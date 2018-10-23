@@ -1,4 +1,5 @@
 test.py
+*.bak
 *.pyc
 *.log
 *.retry

@@ -1,34 +1,7 @@
 ---
-UserTable:
-  get: system/login/user
-  required_keys:
-    user: name
-  view: UserView
-UserView:
-  fields:
-    username: name
-    userclass: class
-    uid: uid
-UserConfigTable:
-  set: system/login/user
-  key-field:
-    username
-  required_keys:
-    user: name
-  view: UserConfigView
-UserConfigView:
-  fields:
-    username: name
-    userclass: class
-    uid: uid
-    password: authentication/encrypted-password
-    fullname: full-name
-
 InterfaceTable:
   get: interfaces/interface
   view: InterfaceView
 InterfaceView:
   fields:     
     ifname: name
-#    ifaddress: unit/family/inet/address/name
-#    ifgroup: { name : group }
