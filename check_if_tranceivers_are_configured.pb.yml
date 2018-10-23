@@ -1,0 +1,21 @@
+---
+
+- hosts: all
+  connection: local
+  gather_facts: no
+  vars_prompt:
+    - name: username
+      prompt: "Enter username"
+      private: no
+
+    - name: password
+      prompt: "Enter password"
+      private: yes
+      confirm: yes
+  tasks:
+    - name: check_if_tranceivers_are_configured
+      command: python check_if_tranceivers_are_configured.py "{{ ansible_host }}" "{{ username }}" "{{ password }}"
+      register: python_output
+
+    - debug:
+        var: python_output.stdout_lines
