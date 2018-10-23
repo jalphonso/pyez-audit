@@ -13,8 +13,8 @@
       private: yes
       confirm: yes
   tasks:
-    - name: check_if_tranceivers_are_configured
-      command: python check_if_tranceivers_are_configured.py "{{ ansible_host }}" "{{ username }}" "{{ password }}"
+    - name: check_if_transceivers_are_configured
+      command: python check_if_transceivers_are_configured.py "{{ ansible_host }}" "{{ username }}" "{{ password }}"
       register: python_output
 
     - debug:
