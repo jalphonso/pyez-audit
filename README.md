@@ -1,7 +1,7 @@
-Used to peform audit of configuration specifically to ensure all transceivers are configured
-PyEZ is the library used here to peform the work.
-The "show chassis hardware" representative table in PyEZ (jnpr.junos.op.xcvr import XcvrTable) 
-is retrieved and then checked to see if each transceiver is in the config using a custom Interface Config Table.
+Used to peform audit of configuration specifically to ensure all transceivers are configured.\
+PyEZ is the library used here to peform the work.\
+The "show chassis hardware" representative table in PyEZ (jnpr.junos.op.xcvr import XcvrTable)
+is retrieved and then checked to see if each transceiver is in the config using a custom Interface Config Table.\
 
 Sample Output:
 
