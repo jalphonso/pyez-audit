@@ -1,5 +1,5 @@
 # Summary
-Used to peform audit of configuration specifically to ensure all transceivers are configured.
+Used to peform audit of configuration specifically to ensure all transceivers are configured.\
 *PyEZ is the library used here to peform the work.*
 
 # Details
