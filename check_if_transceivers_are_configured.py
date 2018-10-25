@@ -1,3 +1,4 @@
+import re
 import sys
 from jnpr.junos import Device
 from jnpr.junos.exception import ConnectError
@@ -20,7 +21,9 @@ def main():
                 xcvr_pic = xcvr.name[1].split()[1]
                 xcvr_port = xcvr.name[2].split()[1]
                 xcvr_name = xcvr_fpc + "/" + xcvr_pic + "/" + xcvr_port
-                if not any(interface.name.endswith(xcvr_name) for interface in config_interfaces):
+                xcvr_regex = xcvr_name + "($|:[\d])"
+                xcvr_compiled_regex = re.compile(xcvr_regex)
+                if not any(xcvr_compiled_regex.search(interface.name) for interface in config_interfaces):
                     print("Xcvr {xcvr} is not configured".format(xcvr=xcvr_name))
         print("Finished configured interface audit of device {hostname}".format(hostname=hostname))
     except ConnectError as err:
