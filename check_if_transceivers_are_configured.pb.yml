@@ -15,6 +15,7 @@
   tasks:
     - name: check_if_transceivers_are_configured
       command: python check_if_transceivers_are_configured.py "{{ ansible_host }}" "{{ username }}" "{{ password }}"
+      no_log: true
       register: python_output
 
     - debug:
