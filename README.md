@@ -3,84 +3,95 @@ Used to peform audit of configuration specifically to ensure all recognized inte
 *PyEZ is the library used here to peform the work.*
 
 # Details
-Using a custom operational table for Ethernet Ports the command "show interfaces media "\[fgxe]\[et]\*" terse" is retrieved and then checked to see if each interface is in the config using a custom config table for Interfaces.
+Using a custom operational table for Ethernet Ports the command "show interfaces media "\[fgxe]\[et]\*" terse" is retrieved and then checked to see if each interface is in the config using a custom config table for Interfaces. The custom ethport table closely mirrors the built in one but excludes ae interfaces from the regex. Also ensured that each interface in the config has a logical unit configured.
 
 ### Sample Output
 
 ```
-ansible-playbook -i hosts check_if_transceivers_are_configured.pb.yml
-Enter username: testuser
+jalphonso-mbp:pyez-audit jalphonso$ ansible-playbook -i hosts check_if_transceivers_are_configured.pb.yml
+Enter username: testuser1
 Enter password:
 confirm Enter password:
 
-PLAY [all] ******************************************************************************************************************
+PLAY [all] ******************************************************************************************************************************************
 
-TASK [check_if_transceivers_are_configured] *********************************************************************************
-ok: [mx240-1]
+TASK [check_if_transceivers_are_configured] *********************************************************************************************************
 ok: [qfx5100-2]
 ok: [qfx5100-1]
 
-TASK [debug] ****************************************************************************************************************
+TASK [debug] ****************************************************************************************************************************************
 ok: [qfx5100-1] => {
     "python_output.stdout_lines": [
+        "",
         "Conducting configured interface audit of device 192.168.0.15",
-        "xe-0/0/20 is not configured",
-        "xe-0/0/43 is not configured",
+        "",
+        "################UNCONFIGURED INTERFACES################",
+        "Interface: xe-0/0/20",
+        "Speed: Auto",
+        "Oper-status: down",
+        "Admin-status: up",
+        "Description: None",
+        "Link-mode: Auto",
+        "Media-type: Copper",
+        "Int-type: Ethernet",
+        "Mac Addr: 44:f4:77:6c:53:d7",
+        "",
+        "Interface: xe-0/0/43",
+        "Speed: Auto",
+        "Oper-status: down",
+        "Admin-status: up",
+        "Description: None",
+        "Link-mode: Auto",
+        "Media-type: Copper",
+        "Int-type: Ethernet",
+        "Mac Addr: 44:f4:77:6c:53:ee",
+        "",
+        "##########################END##########################",
         "Finished configured interface audit of device 192.168.0.15"
     ]
 }
 ok: [qfx5100-2] => {
     "python_output.stdout_lines": [
+        "",
         "Conducting configured interface audit of device 192.168.0.16",
-        "et-0/0/48 is not configured",
-        "xe-0/0/50:2 is not configured",
+        "",
+        "################UNCONFIGURED INTERFACES################",
+        "Interface: et-0/0/48",
+        "Speed: 40Gbps",
+        "Oper-status: down",
+        "Admin-status: up",
+        "Description: None",
+        "Link-mode: None",
+        "Media-type: Fiber",
+        "Int-type: Ethernet",
+        "Mac Addr: 54:4b:8c:e9:6d:b3",
+        "",
+        "Interface: xe-0/0/50:2",
+        "Speed: 10Gbps",
+        "Oper-status: down",
+        "Admin-status: up",
+        "Description: None",
+        "Link-mode: None",
+        "Media-type: Fiber",
+        "Int-type: Ethernet",
+        "Mac Addr: 54:4b:8c:e9:6d:bd",
+        "",
+        "Interface: xe-0/0/50:3",
+        "Speed: 10Gbps",
+        "Oper-status: down",
+        "Admin-status: up",
+        "Description: testing123",
+        "Link-mode: None",
+        "Media-type: Fiber",
+        "Int-type: Ethernet",
+        "Mac Addr: 54:4b:8c:e9:6d:be",
+        "",
+        "##########################END##########################",
         "Finished configured interface audit of device 192.168.0.16"
     ]
 }
-ok: [mx240-1] => {
-    "python_output.stdout_lines": [
-        "Conducting configured interface audit of device 192.168.0.23",
-        "xe-2/0/0 is not configured",
-        "xe-2/0/2 is not configured",
-        "xe-2/0/3 is not configured",
-        "xe-2/0/4 is not configured",
-        "xe-2/0/5 is not configured",
-        "xe-2/0/6 is not configured",
-        "xe-2/0/7 is not configured",
-        "xe-2/0/8 is not configured",
-        "xe-2/0/9 is not configured",
-        "xe-2/0/10 is not configured",
-        "xe-2/0/11 is not configured",
-        "xe-2/0/12 is not configured",
-        "xe-2/0/13 is not configured",
-        "xe-2/0/14 is not configured",
-        "xe-2/0/15 is not configured",
-        "xe-2/0/16 is not configured",
-        "xe-2/0/17 is not configured",
-        "xe-2/1/0 is not configured",
-        "xe-2/1/2 is not configured",
-        "xe-2/1/3 is not configured",
-        "xe-2/1/4 is not configured",
-        "xe-2/1/5 is not configured",
-        "xe-2/1/6 is not configured",
-        "xe-2/1/7 is not configured",
-        "xe-2/1/8 is not configured",
-        "xe-2/1/9 is not configured",
-        "xe-2/1/10 is not configured",
-        "xe-2/1/11 is not configured",
-        "xe-2/1/12 is not configured",
-        "xe-2/1/13 is not configured",
-        "xe-2/1/14 is not configured",
-        "xe-2/1/15 is not configured",
-        "xe-2/1/16 is not configured",
-        "xe-2/1/17 is not configured",
-        "xe-2/1/18 is not configured",
-        "Finished configured interface audit of device 192.168.0.23"
-    ]
-}
 
-PLAY RECAP ******************************************************************************************************************
-mx240-1                    : ok=2    changed=1    unreachable=0    failed=0
+PLAY RECAP ******************************************************************************************************************************************
 qfx5100-1                  : ok=2    changed=1    unreachable=0    failed=0
 qfx5100-2                  : ok=2    changed=1    unreachable=0    failed=0
 ```

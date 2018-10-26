@@ -5,3 +5,4 @@ InterfaceTable:
 InterfaceView:
   fields:     
     ifname: name
+    unit: unit

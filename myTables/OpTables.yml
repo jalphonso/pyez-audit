@@ -17,6 +17,7 @@ EthPortView:
     description: description
     mtu: { mtu : int }
     link_mode: link-mode
+    speed: speed
     media_type: if-media-type
     int_type: link-level-type
     macaddr: current-physical-address
