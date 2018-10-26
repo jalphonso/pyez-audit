@@ -1,10 +1,9 @@
 # Summary
-Used to peform audit of configuration specifically to ensure all transceivers are configured.\
+Used to peform audit of configuration specifically to ensure all recognized interfaces are configured.\
 *PyEZ is the library used here to peform the work.*
 
 # Details
-The "show chassis hardware" representative table in PyEZ (jnpr.junos.op.xcvr import XcvrTable)
-is retrieved and then checked to see if each transceiver is in the config using a custom Interface Config Table.
+Using a custom operational table for Ethernet Ports the command "show interfaces media "\[fgxe]\[et]\*" terse" is retrieved and then checked to see if each interface is in the config using a custom config table for Interfaces.
 
 ### Sample Output
 
