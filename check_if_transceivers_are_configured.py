@@ -2,7 +2,6 @@ import re
 import sys
 from jnpr.junos import Device
 from jnpr.junos.exception import ConnectError
-from jnpr.junos.op.xcvr import XcvrTable
 from myTables.ConfigTables import InterfaceTable
 from myTables.OpTables import EthPortTable
 
@@ -16,7 +15,6 @@ def main():
         with Device(host=hostname, user=username, passwd=password) as dev:
 
             config_interfaces = InterfaceTable(dev).get()
-            xcvrs = XcvrTable(dev).get()
             eths = EthPortTable(dev).get()
             for eth in eths:
                 if not any(eth.name == interface.name for interface in config_interfaces):
