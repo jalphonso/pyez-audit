@@ -13,7 +13,6 @@ def main():
     try:
         print("Conducting configured interface audit of device {hostname}".format(hostname=hostname))
         with Device(host=hostname, user=username, passwd=password) as dev:
-
             config_interfaces = InterfaceTable(dev).get()
             eths = EthPortTable(dev).get()
             for eth in eths:
