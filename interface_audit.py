@@ -17,7 +17,8 @@ def main():
             eths = EthPortTable(dev).get()
             print("################UNCONFIGURED INTERFACES################")
             for eth in eths:
-                if (not eth.name in config_interfaces.keys() or not config_interfaces[eth.name].unit):
+                if (not eth.name in config_interfaces.keys() or (not config_interfaces[eth.name].unit
+                    and not config_interfaces[eth.name].etherlag and not config_interfaces[eth.name].gigetherlag)):
                     print("Interface: {}\nSpeed: {}\nOper-status: {}\nAdmin-status: {}\n"\
                           "Description: {}\nLink-mode: {}\nMedia-type: {}\nInt-type: {}\n"\
                           "Mac Addr: {}\n".format(eth.name, eth.speed, eth.oper, eth.admin,
