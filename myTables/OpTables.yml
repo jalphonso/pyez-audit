@@ -1,0 +1,25 @@
+---
+EthPortTable:
+  rpc: get-interface-information
+  args:
+    detail: true
+    interface_name: '[fgxe][et]*'
+  args_key: interface_name
+  item: physical-interface
+  view: EthPortView
+
+EthPortView:
+  groups:
+    flags: if-device-flags
+  fields:
+    oper: oper-status
+    admin: admin-status
+    description: description
+    mtu: { mtu : int }
+    link_mode: link-mode
+    media_type: if-media-type
+    int_type: link-level-type
+    macaddr: current-physical-address
+  fields_flags:
+    running: { ifdf-running: flag }
+    present: { ifdf-present: flag }
