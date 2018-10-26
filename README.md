@@ -7,7 +7,7 @@ Using a custom operational table for Ethernet Ports the command "show interfaces
 
 ### Sample Output
 
-```bash
+```
 ansible-playbook -i hosts check_if_transceivers_are_configured.pb.yml
 Enter username: testuser
 Enter password:
