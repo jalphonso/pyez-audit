@@ -8,14 +8,14 @@ Using a custom operational table for Ethernet Ports the command "show interfaces
 ### Sample Output
 
 ```
-jalphonso-mbp:pyez-audit jalphonso$ ansible-playbook -i hosts check_if_transceivers_are_configured.pb.yml
+jalphonso-mbp:pyez-audit jalphonso$ ansible-playbook -i hosts interface_audit.pb.yml
 Enter username: testuser1
 Enter password:
 confirm Enter password:
 
 PLAY [all] ******************************************************************************************************************************************
 
-TASK [check_if_transceivers_are_configured] *********************************************************************************************************
+TASK [interface_audit] *********************************************************************************************************
 ok: [qfx5100-2]
 ok: [qfx5100-1]
 
