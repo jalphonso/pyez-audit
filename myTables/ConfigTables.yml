@@ -5,6 +5,9 @@ InterfaceTable:
 InterfaceView:
   fields:     
     ifname: name
+    phy_disable: { disable: bool }
+    unit_disable: { unit/disable: bool }
     unit: unit
+    vlan: unit/family/ethernet-switching/vlan/members
     etherlag: ether-options/ieee-802.3ad
     gigetherlag: gigether-options/ieee-802.3ad
