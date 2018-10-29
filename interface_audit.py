@@ -8,11 +8,12 @@ from myTables.OpTables import EthPortTable
 
 def main():
     hostname = sys.argv[1]
-    username = sys.argv[2]
-    password = sys.argv[3]
+    port = sys.argv[2]
+    username = sys.argv[3]
+    password = sys.argv[4]
     try:
         print("\nConducting configured interface audit of device {hostname}\n".format(hostname=hostname))
-        with Device(host=hostname, user=username, passwd=password) as dev:
+        with Device(host=hostname, port=port, user=username, passwd=password) as dev:
             config_interfaces = InterfaceTable(dev).get()
             eths = EthPortTable(dev).get()
             print("################UNCONFIGURED INTERFACES################")

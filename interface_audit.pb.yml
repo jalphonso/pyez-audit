@@ -14,7 +14,7 @@
       confirm: yes
   tasks:
     - name: interface_audit
-      command: python interface_audit.py "{{ ansible_host }}" "{{ username }}" "{{ password }}"
+      command: python interface_audit.py "{{ ansible_host }}" "{{ port }}" "{{ username }}" "{{ password }}"
       no_log: true
       register: python_output
 

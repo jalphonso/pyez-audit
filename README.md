@@ -1,6 +1,6 @@
 # Summary
 Used to peform audit of configuration specifically to ensure all recognized interfaces are configured.\
-*PyEZ is the library used here to peform the work.*
+*PyEZ is the library used here to perform the work.*
 
 # Details
 Using a custom operational table for Ethernet Ports the command "show interfaces media "\[fgxe]\[et]\*" terse" is retrieved and then checked to see if each interface is in the config using a custom config table for Interfaces. The custom ethport table closely mirrors the built in one but excludes ae interfaces from the regex. Also ensured that each interface in the config has a logical unit configured.
