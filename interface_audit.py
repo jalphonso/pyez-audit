@@ -18,16 +18,25 @@ def main():
             eths = EthPortTable(dev).get()
             print("################UNCONFIGURED INTERFACES################")
             for eth in eths:
-                if(not eth.name in config_interfaces.keys() or (not config_interfaces[eth.name].unit
-                    and not config_interfaces[eth.name].etherlag and not config_interfaces[eth.name].gigetherlag)):
+                interface = unit = ae = ae_config = None
+                interface = config_interfaces[eth.name]
+                if(interface):
+                    unit = interface.unit
+                    ae = interface.ae
+                if(ae):
+                    ae_config = config_interfaces[ae]
+                if(not(interface and unit)):
+                    if(ae_config and not ae_config.unit):
+                        print("Interface: {} is part of {} bundle but {} is not configured with a unit".\
+                              format(eth.name, ae, ae))
+                    elif(ae_config):
+                        continue
                     print("Interface: {}\nSpeed: {}\nOper-status: {}\nAdmin-status: {}\n"\
                           "Description: {}\nLink-mode: {}\nMedia-type: {}\nInt-type: {}\n"\
                           "Mac Addr: {}\n".format(eth.name, eth.speed, eth.oper, eth.admin,
                                                   eth.description, eth.link_mode, eth.media_type,
                                                   eth.int_type, eth.macaddr))
-                elif(eth.name in config_interfaces.keys() and config_interfaces[eth.name].unit and
-                     config_interfaces[eth.name].phy_disable and config_interfaces[eth.name].unit_disable
-                     and config_interfaces[eth.name].vlan == 'badvlan'):
+                elif(interface and interface.unit and interface.phy_disable and interface.unit_disable and interface.vlan == 'badvlan'):
                     print(eth.name + " was probably disabled by a script")
         print("##########################END##########################")
         print("Finished configured interface audit of device {hostname}".format(hostname=hostname))
